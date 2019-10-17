@@ -47,7 +47,7 @@ namespace PowerTradersLibrary
         public void OnStart()
         {
             //required for logging and to raise alerts
-            AppDomain.CurrentDomain.UnhandledException += MyHandler;
+            AppDomain.CurrentDomain.UnhandledException += AppDomainUnhandledException;
             _log.Information(String.Format("Service starting"));
             //run the report on start up but don't check for missing 
             CheckForMissingAndRunReport(DateTime.Now, false);
@@ -59,7 +59,7 @@ namespace PowerTradersLibrary
         }
         //Unhandled exceptions
         //Required for logging and raising alerts
-        private void MyHandler(object sender, UnhandledExceptionEventArgs args)
+        private void AppDomainUnhandledException(object sender, UnhandledExceptionEventArgs args)
         {
             Exception e = (Exception)args.ExceptionObject;
             _log.Error(e, "Unhandled Exception");
