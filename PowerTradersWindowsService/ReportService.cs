@@ -14,7 +14,7 @@ namespace PowerTradersWindowsService
 {
     public partial class ReportService : ServiceBase
     {
-        private Workflow _workflow = new Workflow();
+        private Workflow _workflow;
         public ReportService()
         {
             InitializeComponent();
@@ -22,6 +22,7 @@ namespace PowerTradersWindowsService
 
         protected override void OnStart(string[] args)
         {
+            _workflow = new Workflow();
             _workflow.OnStart();
         }
 
